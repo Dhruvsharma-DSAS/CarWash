@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>24-Second Hub — CAR-A-THON</title>
+    <meta
+      name="description"
+      content="A two-track hub — 15 parallel interior cells feeding a continuous 24-second exterior tunnel — sized by Little's Law. Pitch piece for CAR-A-THON, ProcessFlows for Cars24."
+    />
+  </head>
+  <body>
+    <div id="scene-container">
+      <canvas id="scene-canvas"></canvas>
+    </div>
+
+    <div id="hud">
+      <header id="topbar">
+        <div class="brand">
+          <h1>24-second hub</h1>
+          <p class="subtitle">15 interior cells + a continuous tunnel — CAR-A-THON, ProcessFlows for Cars24</p>
+        </div>
+      </header>
+
+      <button id="tour-start-button" class="button button-accent" type="button">Start the tour</button>
+
+      <section id="tour-panel" class="panel tour-panel" hidden>
+        <p id="tour-stage-label" class="tour-stage-label"></p>
+        <p id="tour-caption-text" class="tour-caption-text"></p>
+        <div id="tour-detail-specs" class="tour-detail-specs"></div>
+        <div class="tour-controls">
+          <button id="tour-prev-button" class="button" type="button">Previous</button>
+          <div id="tour-dots" class="tour-dots" role="tablist" aria-label="Tour beats"></div>
+          <button id="tour-next-button" class="button" type="button">Next</button>
+          <button id="tour-exit-button" class="button button-ghost" type="button">Exit tour</button>
+        </div>
+      </section>
+
+      <aside id="station-stack" class="panel station-stack" aria-label="Process stage status"></aside>
+
+      <aside id="provenance-panel" class="panel provenance-panel" aria-label="Parameter sources">
+        <p class="provenance-title">Parameters &middot; sourced / derived / assumed</p>
+        <div id="provenance-rows" class="provenance-rows"></div>
+      </aside>
+
+      <section id="metrics-panel" class="panel metrics-panel" aria-label="Hub metrics">
+        <div id="metrics-grid" class="metrics-grid"></div>
+        <p id="hub-line" class="hub-line"></p>
+        <p id="verdict-banner" class="verdict-banner"></p>
+        <div id="dwell-diagram" class="dwell-diagram" aria-label="Cells required versus cells built">
+          <p class="dwell-title">Cells needed = cell time &divide; takt</p>
+          <div id="dwell-blocks" class="dwell-blocks"></div>
+          <p class="dwell-caption">Each block is one 24s takt of the 360s interior clean. Lit blocks are cells you've built.</p>
+        </div>
+      </section>
+
+      <section id="control-panel" class="panel control-panel" aria-label="Hub controls">
+        <div class="control-row">
+          <label for="takt-slider">Takt time</label>
+          <input type="range" id="takt-slider" min="16" max="60" step="1" value="24" />
+          <span id="takt-slider-value" class="mono-value">24 s</span>
+        </div>
+        <div class="control-row">
+          <label for="cells-slider">Cells active</label>
+          <input type="range" id="cells-slider" min="1" max="15" step="1" value="15" />
+          <span id="cells-slider-value" class="mono-value">15</span>
+        </div>
+        <div class="control-row">
+          <span class="control-label">Speed</span>
+          <div class="speed-buttons" role="group" aria-label="Playback speed">
+            <button class="button speed-button" data-speed="1" type="button">1x</button>
+            <button class="button speed-button" data-speed="2" type="button">2x</button>
+            <button class="button speed-button" data-speed="4" type="button">4x</button>
+            <button class="button speed-button" data-speed="8" type="button">8x</button>
+          </div>
+          <button id="run-pause-button" class="button button-accent" type="button">Pause</button>
+        </div>
+      </section>
+
+      <footer id="takt-bar-wrap">
+        <div class="takt-bar-label">
+          <span>Tunnel takt index</span>
+          <span id="takt-bar-time" class="mono-value">no output yet</span>
+        </div>
+        <div id="takt-bar" aria-label="Takt progress"></div>
+      </footer>
+    </div>
+
+    <script type="module" src="/src/main.js"></script>
+  </body>
+</html>
